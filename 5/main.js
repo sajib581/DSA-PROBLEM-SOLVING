@@ -83,11 +83,61 @@ function subArraySum(nums, k) {
 }
 subArraySum([3, 4, 7, 2, -3, 1, 4, 2], 7)
 
-//LeetCode Anagram
-//MY CODE
+//LeetCode 242 Anagram
+
 function isAnagram(stringA, stringB) {
-    const normalizedStr1= stringA.replace(/[^\w]/g, '')
-    console.log(stringA);
+    const normalizedStrA= stringA.replace(/[^\w]/g, '')
+    const normalizedStrB= stringB.replace(/[^\w]/g, '')
+    
+    const hashMapA = {};
+    const hashMapB = {};
+
+    for (const key of normalizedStrA) {
+        hashMapA[key] = (hashMapA[key] || 0) + 1
+    }
+    for (const key of normalizedStrB) {
+        hashMapB[key] = (hashMapB[key] || 0) + 1
+    }
+    if(Object.entries(normalizedStrA).length !== Object.entries(normalizedStrB).length ){
+        return false
+    }
+    for (const key in hashMapA) {
+        if(!key in hashMapB || hashMapA[key] !== hashMapB[key]){
+            return false;
+        }
+    }    
+    return true
 }
 
-isAnagram("railll safety","fairy tails")
+console.log(isAnagram("rat", "tar"));
+
+//LeetCode 387
+const firstUniqChar = function(str) {
+    const hashMap = {};
+    for (const item of str) {
+        hashMap[item] = (hashMap[item] || 0) + 1;
+    }
+    for (let i = 0; i < str.length; i++) {
+        if(hashMap[str[i]]===1){
+            return i;
+        }        
+    }
+    return -1;
+};
+console.log(firstUniqChar("aabb"));
+
+//LeetCode 49
+const groupAnagrams = function(strs) {
+    const hashMap = {};
+    for (const elm of strs) {
+        const sorted = elm.split("").sort().join("");
+        if(hashMap[sorted]){
+            hashMap[sorted].push(elm)
+        }else{
+            hashMap[sorted] = [elm]
+        }        
+    }
+    return Object.values(hashMap)
+};
+let e = groupAnagrams(["eat","tea","tan","ate","nat","bat"])
+console.log(e);
