@@ -106,3 +106,24 @@ var lengthOfLongestSubstring = function(s) {
     return max;
 };
 lengthOfLongestSubstring('abcbmababxyb')
+
+//LeetCode 209 Minimum Size Subarray Sum DO not ANSWER
+var minSubArrayLen = function(target, nums) {
+    let length = Infinity
+    let i=0;
+    let left=0;
+    let sum=0;
+    for (let i = 0; i < nums.length; i++) {
+        sum+=nums[i]
+        while(sum>=target){
+            length = Math.min(length, i-left+1)
+            sum = sum-nums[left]
+            console.log(sum);
+            left++            
+        }
+        
+    }
+    return length === Infinity ? 0 : length;
+};
+minSubArrayLen(7, [2,3,1,3,4,3])
+console.log(minSubArrayLen(11,[1,1,1]));

@@ -92,3 +92,23 @@ var lengthOfLongestSubstring = function(s) {
 lengthOfLongestSubstring('abcbm')
 
 //abcbmababxyb
+
+//LeetCode 209 Minimum Size Subarray Sum DO not ANSWER
+var minSubArrayLen = function(target, nums) {
+    let length = Infinity
+    let left = 0 ;
+    let valSum = 0;
+    for(let i=0; i<nums.length; i++){
+        valSum+=nums[i]
+        console.log(valSum);
+        while(valSum>=target){
+            length = Math.min(length, i+1-left) //4 3 3 2 2
+            valSum = valSum-nums[left] //7,4,7,4,3
+            left++ //1 2 3 4 5
+        }
+    }
+    result = result === Infinity? 0 : length
+    console.log(length);
+};
+minSubArrayLen(7, [2,3,1,3,4,3])
+minSubArrayLen(11,[1,1,1])
