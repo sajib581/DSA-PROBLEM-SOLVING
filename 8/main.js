@@ -177,7 +177,10 @@ console.log(create_Range(10,20));
 
 //3. Fibonachi
 function Fibonachi(n){
+    //base Case
     if(n==1)return 1
+    //argument must be change
     return n+Fibonachi(n-1)
 }
 console.log(Fibonachi(10));
+
